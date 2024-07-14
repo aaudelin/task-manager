@@ -1,0 +1,7 @@
+type Query {
+    findEvent: String
+}
+
+type Subscription {
+    newEvent: String
+}
