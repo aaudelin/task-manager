@@ -18,10 +18,22 @@ services:
     depends_on:
       - postgres
     ports:
-      - 8080:8080
+      - 5000:8080
     networks:
       - app-network
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydatabase
+  frontend:
+    container_name: frontend
+    build:
+      context: src/front
+      dockerfile: Dockerfile
+    image: frontend:latest
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
 networks:
   app-network:
