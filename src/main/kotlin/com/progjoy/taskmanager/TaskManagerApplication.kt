@@ -21,6 +21,8 @@ private class EventController {
     fun findEvent(): String = "Hello, World!"
 
     @SubscriptionMapping
-    fun newEvent(): Flux<String> = Flux.interval(Duration.ofMillis(50))
+    fun newEvent(): Flux<String> =
+        Flux
+            .interval(Duration.ofMillis(50))
             .map { "Hello, World!" }
 }
