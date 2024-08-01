@@ -29,7 +29,6 @@ const navLinks: Link[] = [
     href: "bricks",
     icon: BrickWallIcon,
     text: "Bricks",
-    badge: 6,
   },
   {
     href: "tasks",
@@ -48,7 +47,6 @@ export function Navbar() {
             href="/"
             className="flex w-full flex-1 items-center gap-2 font-semibold"
           >
-            <Package2 className="h-6 w-6" />
             <span className="">Task manager</span>
           </Link>
         </div>
@@ -80,7 +78,6 @@ export function NavbarCollapsed() {
   return (
     <nav className="grid gap-2 text-lg font-medium">
       <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-        <Package2 className="h-6 w-6" />
         <span className="sr-only">Task manager</span>
       </Link>
       {navLinks.map((link) => (
