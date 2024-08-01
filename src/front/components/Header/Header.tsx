@@ -1,18 +1,10 @@
-import { CircleUser, Menu, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { NavbarCollapsed } from "@/components/Navbar";
-import Link from "next/link";
 import { ModeToggle } from "@/components/ui/mode-toggle";
+import { UserDropdown } from "@/components/UserDropdown";
 
 export default function Header() {
   return (
@@ -40,29 +32,8 @@ export default function Header() {
           </div>
         </form>
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <CircleUser className="h-5 w-5" />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="/settings">Settings</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <a href="mailto:aurelien@audelin.com"> Support</a>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="/logout">Logout</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
       <ModeToggle />
+      <UserDropdown />
     </header>
   );
 }
