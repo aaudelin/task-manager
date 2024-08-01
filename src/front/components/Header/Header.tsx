@@ -1,12 +1,5 @@
 import { CircleUser, Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -18,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NavbarCollapsed } from "@/components/Navbar";
+import Link from "next/link";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default function Header() {
   return (
@@ -31,22 +26,6 @@ export default function Header() {
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col">
           <NavbarCollapsed />
-          <div className="mt-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle>Upgrade to Pro</CardTitle>
-                <CardDescription>
-                  Unlock all features and get unlimited access to our support
-                  team.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button size="sm" className="w-full">
-                  Upgrade
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
         </SheetContent>
       </Sheet>
       <div className="w-full flex-1">
@@ -71,12 +50,19 @@ export default function Header() {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/settings">Settings</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <a href="mailto:aurelien@audelin.com"> Support</a>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/logout">Logout</Link>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <ModeToggle />
     </header>
   );
 }

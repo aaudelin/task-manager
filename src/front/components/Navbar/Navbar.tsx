@@ -1,33 +1,40 @@
 import Link from "next/link";
-import { Home, Package2, ShoppingCart } from "lucide-react";
+import {
+  BrickWallIcon,
+  LucideProps,
+  Package2,
+  SquareCheckBigIcon,
+  Target,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import * as react from "react";
 
 interface Link {
   href: string;
-  icon: React.ComponentType;
+  icon: react.ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & react.RefAttributes<SVGSVGElement>
+  >;
   text: string;
   badge?: number;
 }
 
-const navLinks = [
+const navLinks: Link[] = [
   {
-    href: "#",
-    icon: Home,
-    text: "Dashboard",
+    href: "goals",
+    icon: Target,
+    text: "Goals",
   },
   {
-    href: "#",
-    icon: ShoppingCart,
-    text: "Orders",
+    href: "bricks",
+    icon: BrickWallIcon,
+    text: "Bricks",
+    badge: 6,
+  },
+  {
+    href: "tasks",
+    icon: SquareCheckBigIcon,
+    text: "Tasks",
     badge: 6,
   },
 ];
@@ -63,22 +70,6 @@ export function Navbar() {
               </Link>
             ))}
           </nav>
-        </div>
-        <div className="mt-auto p-4">
-          <Card x-chunk="dashboard-02-chunk-0">
-            <CardHeader className="p-2 pt-0 md:p-4">
-              <CardTitle>Upgrade to Pro</CardTitle>
-              <CardDescription>
-                Unlock all features and get unlimited access to our support
-                team.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <Button size="sm" className="w-full">
-                Upgrade
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>
