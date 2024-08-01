@@ -11,7 +11,28 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function Navbar() {
+interface Link {
+  href: string;
+  icon: React.ComponentType;
+  text: string;
+  badge?: number;
+}
+
+const navLinks = [
+  {
+    href: "#",
+    icon: Home,
+    text: "Dashboard",
+  },
+  {
+    href: "#",
+    icon: ShoppingCart,
+    text: "Orders",
+    badge: 6,
+  },
+];
+
+export function Navbar() {
   return (
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
@@ -26,23 +47,21 @@ export default function Navbar() {
         </div>
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-            <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-            >
-              <Home className="h-4 w-4" />
-              Dashboard
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-            >
-              <ShoppingCart className="h-4 w-4" />
-              Orders
-              <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                6
-              </Badge>
-            </Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+                <link.icon className="h-4 w-4" />
+                {link.text}
+                {link.badge && (
+                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                    {link.badge}
+                  </Badge>
+                )}
+              </Link>
+            ))}
           </nav>
         </div>
         <div className="mt-auto p-4">
@@ -63,5 +82,31 @@ export default function Navbar() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function NavbarCollapsed() {
+  return (
+    <nav className="grid gap-2 text-lg font-medium">
+      <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
+        <Package2 className="h-6 w-6" />
+        <span className="sr-only">Task manager</span>
+      </Link>
+      {navLinks.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+        >
+          <link.icon className="h-5 w-5" />
+          {link.text}
+          {link.badge && (
+            <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+              {link.badge}
+            </Badge>
+          )}
+        </Link>
+      ))}
+    </nav>
   );
 }
