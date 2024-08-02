@@ -11,9 +11,9 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function SearchCommand() {
   const [open, setOpen] = useState(false);
@@ -51,11 +51,13 @@ export default function SearchCommand() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Actions">
-            <CommandItem>
-              <Plus className="mr-2 h-4 w-4" />
-              <span>Create new goal</span>
+            <CommandItem asChild>
+              <Link href="/goals/new">
+                <Plus className="mr-2 h-4 w-4" />
+                <span>Create new goal</span>
+              </Link>
             </CommandItem>
-            <CommandItem>
+            <CommandItem asChild>
               <Plus className="mr-2 h-4 w-4" />
               <span>Create new brick</span>
             </CommandItem>
