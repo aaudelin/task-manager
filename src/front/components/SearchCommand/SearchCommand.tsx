@@ -57,7 +57,7 @@ export default function SearchCommand() {
                 <span>Create new goal</span>
               </Link>
             </CommandItem>
-            <CommandItem asChild>
+            <CommandItem>
               <Plus className="mr-2 h-4 w-4" />
               <span>Create new brick</span>
             </CommandItem>
