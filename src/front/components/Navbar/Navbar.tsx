@@ -8,6 +8,7 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import * as react from "react";
+import { MenuDropdown } from "@/components/MenuDropdown";
 
 interface Link {
   href: string;
@@ -42,12 +43,7 @@ export function Navbar() {
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-          <Link
-            href="/"
-            className="flex w-full flex-1 items-center gap-2 font-semibold"
-          >
-            <span className="">Task manager</span>
-          </Link>
+          <MenuDropdown />
         </div>
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
@@ -75,15 +71,13 @@ export function Navbar() {
 
 export function NavbarCollapsed() {
   return (
-    <nav className="grid gap-2 text-lg font-medium">
-      <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-        <span className="sr-only">Task manager</span>
-      </Link>
+    <nav className="grid gap-1 text-sm font-medium">
+      <MenuDropdown />
       {navLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
-          className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+          className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-1 text-muted-foreground hover:text-foreground"
         >
           <link.icon className="h-5 w-5" />
           {link.text}

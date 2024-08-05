@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { NavbarCollapsed } from "@/components/Navbar";
 import { ModeToggle } from "@/components/ui/mode-toggle";
-import { UserDropdown } from "@/components/UserDropdown";
 import { SearchCommand } from "@/components/SearchCommand";
 
 export default function Header() {
@@ -24,7 +23,6 @@ export default function Header() {
         <SearchCommand />
       </div>
       <ModeToggle />
-      <UserDropdown />
     </header>
   );
 }

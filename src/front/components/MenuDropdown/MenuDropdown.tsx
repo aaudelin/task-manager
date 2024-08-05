@@ -7,16 +7,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { CircleUser } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
-export default function UserDropdown() {
+export default function MenuDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full">
-          <CircleUser className="h-5 w-5" />
-          <span className="sr-only">Toggle user menu</span>
+        <Button
+          variant="ghost"
+          className="px-0 py-0 hover:bg-background gap-4 focus-visible:ring-0 justify-start text-base"
+        >
+          <span>Task Manager</span>
+          <ChevronDown className="size-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
