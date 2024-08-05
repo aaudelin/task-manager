@@ -1,8 +1,7 @@
 import Link from "next/link";
 import {
-  BrickWallIcon,
+  InboxIcon,
   LucideProps,
-  Package2,
   SquareCheckBigIcon,
   Target,
 } from "lucide-react";
@@ -21,17 +20,17 @@ interface Link {
 
 const navLinks: Link[] = [
   {
+    href: "inbox",
+    icon: InboxIcon,
+    text: "Inbox",
+  },
+  {
     href: "goals",
     icon: Target,
     text: "Goals",
   },
   {
-    href: "bricks",
-    icon: BrickWallIcon,
-    text: "Bricks",
-  },
-  {
-    href: "tasks",
+    href: "tasks?expectedDate=today",
     icon: SquareCheckBigIcon,
     text: "Tasks",
     badge: 6,
