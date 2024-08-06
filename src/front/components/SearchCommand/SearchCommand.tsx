@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ShortcutKeyboard from "@/components/ui/shortcut-keyboard";
 
 export default function SearchCommand() {
   const [open, setOpen] = useState(false);
@@ -41,9 +42,7 @@ export default function SearchCommand() {
         <span className="flex-1 text-left ml-2 mr-2">
           Type a command or search...
         </span>
-        <kbd className="hidden pointer-events-none lg:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">⌘</span>K
-        </kbd>
+        <ShortcutKeyboard shortcut="K" />
       </Button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
