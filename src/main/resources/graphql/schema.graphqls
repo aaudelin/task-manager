@@ -1,5 +1,11 @@
 type Query {
     findEvent: String
+    findGoals: [Goal]
+}
+
+type Goal {
+    id: ID!
+    description: String
 }
 
 type Subscription {
