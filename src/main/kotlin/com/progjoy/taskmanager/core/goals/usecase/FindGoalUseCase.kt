@@ -19,7 +19,7 @@ interface FindGoalUseCase {
     fun execute(): List<Goal>
 }
 
-@Service
+@UseCase
 class FindGoalUseCaseImpl : FindGoalUseCase {
     override fun execute(): List<Goal> =
         listOf(
