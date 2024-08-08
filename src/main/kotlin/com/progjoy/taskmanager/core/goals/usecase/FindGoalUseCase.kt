@@ -1,18 +1,16 @@
 package com.progjoy.taskmanager.core.goals.usecase
 
+import com.progjoy.taskmanager.core.annotations.UseCase
+import com.progjoy.taskmanager.core.goals.Brick
+import com.progjoy.taskmanager.core.goals.Description
 import com.progjoy.taskmanager.core.goals.Goal
-import com.progjoy.taskmanager.core.goals.GoalDescription
-import com.progjoy.taskmanager.core.goals.GoalId
 import com.progjoy.taskmanager.core.goals.GoalStatus
+import com.progjoy.taskmanager.core.goals.Id
 import com.progjoy.taskmanager.core.goals.Task
-import com.progjoy.taskmanager.core.goals.TaskDescription
-import com.progjoy.taskmanager.core.goals.TaskEndDate
-import com.progjoy.taskmanager.core.goals.TaskId
-import com.progjoy.taskmanager.core.goals.TaskStartDate
 import com.progjoy.taskmanager.core.goals.TaskStatus
-import org.springframework.stereotype.Service
+import com.progjoy.taskmanager.core.goals.TimePeriod
+import java.time.Duration
 import java.time.Instant
-import java.time.temporal.ChronoUnit
 import java.util.Date
 
 interface FindGoalUseCase {
@@ -24,68 +22,86 @@ class FindGoalUseCaseImpl : FindGoalUseCase {
     override fun execute(): List<Goal> =
         listOf(
             Goal(
-                id = GoalId("1"),
-                description = GoalDescription("Goal 1"),
+                id = Id("1"),
+                description = Description("Goal 1"),
                 status = GoalStatus.OPEN,
-                tasks =
+                bricks =
                     listOf(
-                        Task(
-                            id = TaskId("1"),
-                            description = TaskDescription("Task 1"),
-                            status = TaskStatus.OPEN,
-                            startDate = TaskStartDate(Date.from(Instant.now())),
-                            endDate = TaskEndDate(Date.from(Instant.now().plus(15, ChronoUnit.DAYS))),
+                        Brick(
+                            id = Id("1"),
+                            description = Description("Brick 1"),
+                            period = TimePeriod(Date(), Date.from(Instant.now().plus(Duration.ofDays(1)))),
+                            tasks =
+                                listOf(
+                                    Task(
+                                        id = Id("1"),
+                                        description = Description("Task 1"),
+                                        status = TaskStatus.OPEN,
+                                        period = Date(),
+                                    ),
+                                ),
                         ),
                     ),
             ),
             Goal(
-                id = GoalId("2"),
-                description = GoalDescription("Goal 2"),
-                status = GoalStatus.PAUSED,
-                tasks =
-                    listOf(
-                        Task(
-                            id = TaskId("2"),
-                            description = TaskDescription("Task 2"),
-                            status = TaskStatus.PAUSED,
-                            startDate = TaskStartDate(Date.from(Instant.now())),
-                            endDate = TaskEndDate(Date.from(Instant.now().plus(15, ChronoUnit.DAYS))),
-                        ),
-                        Task(
-                            id = TaskId("3"),
-                            description = TaskDescription("Task 3"),
-                            status = TaskStatus.DONE,
-                            startDate = TaskStartDate(Date.from(Instant.now())),
-                            endDate = TaskEndDate(Date.from(Instant.now())),
-                        ),
-                    ),
-            ),
-            Goal(
-                id = GoalId("3"),
-                description = GoalDescription("Goal 3"),
+                id = Id("2"),
+                description = Description("Goal 2"),
                 status = GoalStatus.IN_PROGRESS,
-                tasks =
+                bricks =
                     listOf(
-                        Task(
-                            id = TaskId("4"),
-                            description = TaskDescription("Task 4"),
-                            status = TaskStatus.OPEN,
-                            startDate = TaskStartDate(Date.from(Instant.now())),
-                            endDate = TaskEndDate(Date.from(Instant.now().plus(15, ChronoUnit.DAYS))),
+                        Brick(
+                            id = Id("2"),
+                            description = Description("Brick 2"),
+                            period = TimePeriod(Date(), Date.from(Instant.now().plus(Duration.ofDays(2)))),
+                            tasks =
+                                listOf(
+                                    Task(
+                                        id = Id("2"),
+                                        description = Description("Task 2"),
+                                        status = TaskStatus.IN_PROGRESS,
+                                        period = Date.from(Instant.now().minus(Duration.ofDays(1))),
+                                    ),
+                                    Task(
+                                        id = Id("3"),
+                                        description = Description("Task 3"),
+                                        status = TaskStatus.OPEN,
+                                        period = Date.from(Instant.now().minus(Duration.ofDays(5))),
+                                    ),
+                                ),
                         ),
-                        Task(
-                            id = TaskId("5"),
-                            description = TaskDescription("Task 5"),
-                            status = TaskStatus.IN_PROGRESS,
-                            startDate = TaskStartDate(Date.from(Instant.now())),
-                            endDate = TaskEndDate(Date.from(Instant.now().plus(10, ChronoUnit.DAYS))),
-                        ),
-                        Task(
-                            id = TaskId("6"),
-                            description = TaskDescription("Task 6"),
-                            status = TaskStatus.DONE,
-                            startDate = TaskStartDate(Date.from(Instant.now())),
-                            endDate = TaskEndDate(Date.from(Instant.now())),
+                    ),
+            ),
+            Goal(
+                id = Id("3"),
+                description = Description("Goal 3"),
+                status = GoalStatus.PAUSED,
+                bricks =
+                    listOf(
+                        Brick(
+                            id = Id("3"),
+                            description = Description("Brick 3"),
+                            period = TimePeriod(Date(), Date.from(Instant.now().plus(Duration.ofDays(3)))),
+                            tasks =
+                                listOf(
+                                    Task(
+                                        id = Id("4"),
+                                        description = Description("Task 4"),
+                                        status = TaskStatus.PAUSED,
+                                        period = Date.from(Instant.now().minus(Duration.ofDays(6))),
+                                    ),
+                                    Task(
+                                        id = Id("5"),
+                                        description = Description("Task 5"),
+                                        status = TaskStatus.IN_PROGRESS,
+                                        period = Date(),
+                                    ),
+                                    Task(
+                                        id = Id("6"),
+                                        description = Description("Task 6"),
+                                        status = TaskStatus.DONE,
+                                        period = Date(),
+                                    ),
+                                ),
                         ),
                     ),
             ),
