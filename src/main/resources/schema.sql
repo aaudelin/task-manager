@@ -8,8 +8,7 @@ create table if not exists events (
 
 create table if not exists goals (
     id varchar(255) primary key,
-    description text,
-    status varchar(255)
+    description text
 );
 
 create table if not exists bricks (
