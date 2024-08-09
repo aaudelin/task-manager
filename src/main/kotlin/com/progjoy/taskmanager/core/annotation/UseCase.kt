@@ -1,4 +1,4 @@
-package com.progjoy.taskmanager.core.annotations
+package com.progjoy.taskmanager.core.annotation
 
 import org.springframework.stereotype.Component
 

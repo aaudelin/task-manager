@@ -5,9 +5,21 @@ import java.util.Date
 data class Goal(
     val id: Id,
     val description: Description,
-    val status: GoalStatus,
     val bricks: List<Brick>,
-)
+) {
+    fun status(): GoalStatus {
+        val tasks = bricks.flatMap { it.tasks }
+        return if (tasks.any { it.status == TaskStatus.OPEN }) {
+            GoalStatus.OPEN
+        } else if (tasks.any { it.status == TaskStatus.IN_PROGRESS }) {
+            GoalStatus.IN_PROGRESS
+        } else if (tasks.any { it.status == TaskStatus.PAUSED }) {
+            GoalStatus.PAUSED
+        } else {
+            GoalStatus.DONE
+        }
+    }
+}
 
 enum class GoalStatus {
     OPEN,

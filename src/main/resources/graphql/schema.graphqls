@@ -3,6 +3,8 @@ type Query {
     findGoals: [Goal]
 }
 
+
+
 type Goal {
     id: ID!
     description: String
