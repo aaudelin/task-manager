@@ -1,7 +1,7 @@
 package com.progjoy.taskmanager.infrastructure.db.goals
 
 import com.progjoy.taskmanager.core.goals.Goal
-import com.progjoy.taskmanager.core.goals.port.GoalRepository
+import com.progjoy.taskmanager.core.goals.outbound.LoadGoalRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
@@ -11,7 +11,7 @@ interface GoalDBRepository : CrudRepository<GoalDB, String>
 class GoalDBRepositoryCustom(
     val goalDBRepository: GoalDBRepository,
     val goalMapper: GoalMapper,
-) : GoalRepository {
+) : LoadGoalRepository {
     override fun find(): List<Goal> = goalDBRepository.findAll().toList().map { goalMapper.toGoal(it) }
 
     override fun find(id: String): Goal? = goalMapper.toGoal(goalDBRepository.findById(id).orElse(null))

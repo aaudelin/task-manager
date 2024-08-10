@@ -4,4 +4,4 @@ import org.springframework.stereotype.Component
 
 @Component
 @MustBeDocumented
-annotation class UseCase
+annotation class DDDUseCase

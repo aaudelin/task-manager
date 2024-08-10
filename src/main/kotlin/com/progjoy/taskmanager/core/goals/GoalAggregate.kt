@@ -1,7 +1,9 @@
 package com.progjoy.taskmanager.core.goals
 
+import com.progjoy.taskmanager.core.annotation.DDDAggregate
 import java.util.Date
 
+@DDDAggregate
 data class Goal(
     val id: Id,
     val description: Description,
